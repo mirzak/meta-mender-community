@@ -1,0 +1,41 @@
+#!/bin/sh
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+mender_community_dir=${script_dir}/sources/meta-mender-community
+build_dir=${script_dir}/build
+
+targets=(
+    "rockchip"
+    "sunxi"
+    "renesas"
+    "freescale"
+    "qemu")
+
+for i in ${targets[@]}
+do
+    if [[ $i == $1 ]]
+    then
+        echo "$1 is a valid target"
+        target=$1
+        break
+    fi
+    echo "Sorry, it does not seem that *$1* is a valid target"
+    echo ""
+
+    printf "Supported targets are:\n"
+    printf '%s\n' "${targets[@]}"
+    return 1
+done
+
+target_templates=${mender_community_dir}/meta-mender-${target}/templates
+
+. ${script_dir}/sources/poky/oe-init-build-env ${build_dir}
+
+if [ -f ${build_dir}/conf/mender_append_complete ]; then
+    return 1
+fi
+
+cp ${target_templates}/bblayers.conf.sample ${build_dir}/conf/bblayers.conf
+cat ${target_templates}/local.conf.append >> ${build_dir}/conf/local.conf
+
+touch ${build_dir}/conf/mender_append_complete
