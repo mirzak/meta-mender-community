@@ -13,13 +13,12 @@ Download the source:
     $ repo init \
            -u https://github.com/mirzak/meta-mender-community \
            -m meta-mender-rockchip/scripts/manifest-rockchip.xml \
-           -b rocko
+           -b wip/poc-append
     $ repo sync
 
 Setup environment
 
-    $ export TEMPLATECONF=../meta-mender-community/meta-mender-rockchip/templates/
-    $ . sources/poky/oe-init-build-env build
+    $ . setup-environment rockchip
 
 Build
 
