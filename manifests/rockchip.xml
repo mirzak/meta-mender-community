@@ -11,7 +11,7 @@
   <project name="poky" remote="yocto" revision="sumo" path="sources/poky"/>
   <project name="meta-openembedded" remote="oe" revision="sumo" path="sources/meta-openembedded"/>
   <project name="meta-rockchip" remote="mirzak" revision="sumo" path="sources/meta-rockchip"/>
-  <project name="meta-mender" remote="mender" revision="sumo" path="sources/meta-mender"/>
-  <project name="meta-mender-community" remote="mender" revision="sumo" path="sources/meta-mender-community"/>
+
+  <include name="mender.xml"/>
 
   </manifest>
