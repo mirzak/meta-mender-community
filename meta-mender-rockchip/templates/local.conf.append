@@ -1,5 +1,9 @@
+
+# Appended fragment from meta-mender-community/meta-mender-rockchip/templates
+
 MACHINE ?= "tinker-rk3288"
 
+# This really saves a lot of disk space!
 INHERIT += "rm_work"
 
 # The name of the disk image and Artifact that will be built.
